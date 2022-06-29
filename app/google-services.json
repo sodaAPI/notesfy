@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "608638434340",
+    "project_id": "notesfy-b1608",
+    "storage_bucket": "notesfy-b1608.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608638434340:android:5899229868d6464e5aecb1",
+        "android_client_info": {
+          "package_name": "com.app.notesfy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608638434340-7inb49essq4fmg5i042asls40v66kbsa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmdbtITvqAUZhhpa_50CiYT3QI57AckZo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608638434340-7inb49essq4fmg5i042asls40v66kbsa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
