@@ -2,17 +2,19 @@ package com.app.notesfy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     TextInputLayout logUser, loginEmail, LoginPassword;
     ProgressBar loadingLog;
     Button btnLogin, btnRegister, forgotPassword;
+    TextView text_or, loginLogo;
+
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
@@ -39,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnSign);
         forgotPassword = findViewById(R.id.forgotPass);
         loadingLog = findViewById(R.id.loadingLogin);
+        text_or = findViewById(R.id.tv_or);
+        loginLogo = findViewById(R.id.loginlogo);
 
         getSupportActionBar().hide();
 
@@ -54,7 +60,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this,ForgotPasswordActivity.class);
-                startActivity(intent);
+
+                Pair[] pairs = new Pair[3];
+                pairs [0] = new Pair<View, String>(loginLogo, "logo_text");
+                pairs [1] = new Pair<View, String>(loginEmail, "email_trans");
+                pairs [2] = new Pair<View, String>(btnLogin, "login_btn");
+
+                ActivityOptionsCompat optionsFP = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this,pairs);
+
+                startActivity(intent, optionsFP.toBundle());
             }
         });
 
@@ -69,7 +83,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
-                startActivity(intent);
+
+                Pair[] pairs = new Pair[5];
+                pairs [0] = new Pair<View, String>(btnLogin, "login_btn");
+                pairs [1] = new Pair<View, String>(btnRegister, "reg_btn");
+                pairs [2] = new Pair<View, String>(loginLogo, "logo_text");
+                pairs [3] = new Pair<View, String>(loginEmail, "email_trans");
+                pairs [4] = new Pair<View, String>(LoginPassword, "pw_trans");
+
+                ActivityOptionsCompat optionsLog = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this,pairs);
+
+                startActivity(intent, optionsLog.toBundle());
             }
         });
 

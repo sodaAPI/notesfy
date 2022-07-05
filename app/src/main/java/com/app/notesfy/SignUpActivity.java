@@ -2,11 +2,14 @@ package com.app.notesfy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     TextInputLayout regUser, regEmail, regPass;
     Button btnLogin, btnRegister;
+    TextView text_or, signupLogo;
 
     private FirebaseAuth firebaseAuth;
 
@@ -35,6 +39,8 @@ public class SignUpActivity extends AppCompatActivity {
         regPass = findViewById(R.id.reg_password);
         btnLogin = findViewById(R.id.btnLog);
         btnRegister = findViewById(R.id.btnSign);
+        text_or = findViewById(R.id.tv_or);
+        signupLogo = findViewById(R.id.signuplogo);
 
         getSupportActionBar().hide();
 
@@ -44,7 +50,17 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
-                startActivity(intent);
+
+                Pair[] pairs = new Pair[5];
+                pairs [0] = new Pair<View, String>(btnLogin, "login_btn");
+                pairs [1] = new Pair<View, String>(btnRegister, "reg_btn");
+                pairs [2] = new Pair<View, String>(signupLogo, "logo_text");
+                pairs [3] = new Pair<View, String>(regEmail, "email_trans");
+                pairs [4] = new Pair<View, String>(regPass, "pw_trans");
+
+                ActivityOptionsCompat optionsSign = ActivityOptionsCompat.makeSceneTransitionAnimation(SignUpActivity.this,pairs);
+
+                startActivity(intent, optionsSign.toBundle());
             }
         });
 

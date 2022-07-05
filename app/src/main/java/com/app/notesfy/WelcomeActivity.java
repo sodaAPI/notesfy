@@ -1,7 +1,10 @@
 package com.app.notesfy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,7 +40,10 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent(WelcomeActivity.this,ChooseLoginSignup_Activity.class);
-                startActivity(intent);
+
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(WelcomeActivity.this, image, ViewCompat.getTransitionName(image));
+
+                startActivity(intent, options.toBundle());
                 finish();
             }
         },SPLASH_SCREEN);

@@ -1,7 +1,9 @@
 package com.app.notesfy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
+import androidx.core.view.ViewCompat;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -34,12 +36,30 @@ public class ChooseLoginSignup_Activity extends AppCompatActivity {
 
         btnLogin.setOnClickListener(view -> {
             Intent intent = new Intent(ChooseLoginSignup_Activity.this,LoginActivity.class);
-            startActivity(intent);
+//            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(ChooseLoginSignup_Activity.this, btnLogin, ViewCompat.getTransitionName(btnLogin));
+
+            Pair[] pairs = new Pair[3];
+            pairs [0] = new Pair<View, String>(btnLogin, "login_btn");
+            pairs [1] = new Pair<View, String>(btnRegister, "reg_btn");
+            pairs [2] = new Pair<View, String>(text_or, "tv_or");
+
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(ChooseLoginSignup_Activity.this,pairs);
+
+            startActivity(intent, options.toBundle());
         });
 
         btnRegister.setOnClickListener(view -> {
             Intent intent = new Intent(ChooseLoginSignup_Activity.this,SignUpActivity.class);
-            startActivity(intent);
+//            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(ChooseLoginSignup_Activity.this, btnRegister, ViewCompat.getTransitionName(btnRegister));
+
+            Pair[] pairs = new Pair[3];
+            pairs [0] = new Pair<View, String>(btnLogin, "login_btn");
+            pairs [1] = new Pair<View, String>(btnRegister, "reg_btn");
+            pairs [2] = new Pair<View, String>(text_or, "tv_or");
+
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(ChooseLoginSignup_Activity.this,pairs);
+
+            startActivity(intent, options.toBundle());
         });
 
     }
